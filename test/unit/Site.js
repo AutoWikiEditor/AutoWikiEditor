@@ -3,6 +3,9 @@ const query = require('./data/siteinfo.json').query;
 
 /* global describe, it, expect */
 
+/**
+ * @return {Site}
+ */
 function makeSite() {
 	// Deep clone
 	const cloned = JSON.parse(JSON.stringify(query));
@@ -36,6 +39,13 @@ describe('Site', () => {
 			expect(site.namespaces[Namespace.NS_MAIN].regex).to.be.a('null');
 			expect(site.namespaces[Namespace.NS_TALK].regex).to.equal('(Talk)');
 			expect(site.namespaces[Namespace.NS_PROJECT].regex).to.equal('(Wikipedia|Project|WP)');
+		});
+	});
+
+	describe('case', () => {
+		it('should return case', () => {
+			let site = makeSite();
+			expect(site.case).to.equal('first-letter');
 		});
 	});
 

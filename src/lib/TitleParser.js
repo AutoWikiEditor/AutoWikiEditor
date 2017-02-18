@@ -19,13 +19,13 @@ export default class TitleParser {
 	 * @return {Title|null}: Title or null if parsing failed
 	 */
 	parse(text, presumedNamespace = null) {
-		text = this._removeHashes(text);
-		if (/%[0-9A-Fa-f]{2}/.match(text)) {
+		text = this.removeHash(text);
+		if (/%[0-9A-Fa-f]{2}/.test(text)) {
 			text = decodeURIComponent(text);
 		}
-		text = text.replace('_', ' ')
+		text = text.replace(/_/g, ' ')
 			.trim()
-			.replace(/\s+/, ' ');
+			.replace(/\s+/g, ' ');
 
 		if (text[0] === ':') {
 			text = text.substring(1);
@@ -38,7 +38,7 @@ export default class TitleParser {
 		if (parts.length > 1) {
 			ns = this.detectNamespace(parts[0].trim());
 			if (ns) {
-				parts = parts.shift();
+				parts.shift();
 			}
 		} else if (presumedNamespace !== null) {
 			ns = this._site.getNamespace( presumedNamespace );
@@ -50,13 +50,26 @@ export default class TitleParser {
 
 		// trim removes extra space in e.g. "Wikipedia: Foo"
 		let title = parts.join(':').trim();
-		if (!ns) {
-			ns ='';
+		if (title === '') {
+			return null;
 		}
+
+		const letterCase = (ns && ns.case) || this._site.case;
+		if (letterCase === 'first-letter') {
+			title = title[0].toUpperCase() + title.substring(1);
+		}
+
+		if (!ns || ns.id === Namespace.NS_MAIN) {
+			return new Title(Namespace.NS_MAIN, title, title);
+		}
+
+		const prefixedTitle = ns.name + ':' + title;
+		return new Title(ns.id, prefixedTitle, title);
 	}
 
 	/**
 	 * Decodes namespace text into number
+	 *
 	 * @param {string} text: text, must be already URL-decoded and normalized
 	 * @return {object|null} Namespace information from {Site}
 	 */
@@ -79,8 +92,13 @@ export default class TitleParser {
 		return null;
 	}
 
-
-	_removeHashes(text) {
+	/**
+	 * Removes hash from a title/URL
+	 *
+	 * @param {string} text
+	 * @return {string}
+	 */
+	removeHash( text) {
 		return text.split('#')[0];
 	}
 }

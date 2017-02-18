@@ -54,6 +54,10 @@ export default class Site {
 		return this._namespaces;
 	}
 
+	get case() {
+		return this._data.case;
+	}
+
 	getNamespace(id) {
 		return this._namespaces[id];
 	}
