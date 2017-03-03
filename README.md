@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/MaxSem/AutoWikiEditor.svg?branch=master)](https://travis-ci.org/MaxSem/AutoWikiEditor)
+[![Build Status](https://travis-ci.org/AutoWikiEditor/AutoWikiEditor.svg?branch=master)](https://travis-ci.org/AutoWikiEditor/AutoWikiEditor)
 
 # AutoWikiEditor
 
