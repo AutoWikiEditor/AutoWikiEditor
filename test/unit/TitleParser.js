@@ -1,5 +1,5 @@
-import { Namespace, Site, Title, TitleParser } from '../../src/lib';
-const query = require('./data/siteinfo.json').query;
+import { Namespace, Title, TitleParser } from '../../src/lib';
+import { makeSite } from '../makers';
 
 /* global describe, it, expect */
 
@@ -7,9 +7,7 @@ const query = require('./data/siteinfo.json').query;
  * @return {TitleParser}
  */
 function makeParser() {
-	const clone = JSON.parse(JSON.stringify(query));
-	const site = new Site('https://en.wikipedia.org/w/', clone);
-	return new TitleParser(site);
+	return new TitleParser(makeSite());
 }
 
 /**
