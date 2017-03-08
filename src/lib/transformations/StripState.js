@@ -1,12 +1,12 @@
 import _ from 'underscore';
 
+const TOKEN_START = '⌞⌞⌞';
+const TOKEN_END = '⌟⌟⌟';
+
 /**
  * Replaces certain parts of page text with strip tokens
  */
 export default class StripState {
-	static TOKEN_START = '⌞⌞⌞';
-	static TOKEN_END = '⌟⌟⌟';
-
 	static basicRegexes = [
 		/⌞⌞⌞\d+⌟⌟⌟/g,
 		/<nowiki.*>[^]*?<\s*\/\s*nowiki>/gim,
@@ -47,7 +47,7 @@ export default class StripState {
 	}
 
 	get _nextToken() {
-		return StripState.TOKEN_START + this.count + StripState.TOKEN_END;
+		return TOKEN_START + this.count + TOKEN_END;
 	}
 
 	_replace(text, regexes, removals) {

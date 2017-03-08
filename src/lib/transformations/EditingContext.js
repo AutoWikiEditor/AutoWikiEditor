@@ -62,7 +62,7 @@ export default class EditingContext {
 		if (!this._stripState) {
 			throw new Error('unstrip() called without a strip state');
 		}
-		this._text = this._stripState.unstrip();
+		this._text = this._stripState.unstrip(this._text);
 		delete this._stripState;
 	}
 
@@ -70,6 +70,7 @@ export default class EditingContext {
 		if (this._stripState) {
 			this.unstrip();
 		}
+		return this._text;
 	}
 
 	get hasChanges() {

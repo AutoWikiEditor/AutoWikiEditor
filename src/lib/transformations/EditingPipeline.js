@@ -1,3 +1,5 @@
+import { Stage } from './';
+
 export default class EditingPipeline {
 	_mutators = {};
 
@@ -20,10 +22,29 @@ export default class EditingPipeline {
 	process(editingContext) {
 		const stages = [
 			{
-				name: 'initial',
-				after: () => ""
+				name: Stage.Initial,
+				after: () => editingContext.strip()
+			},
+			{
+				name: Stage.AfterStrip,
+				after: () => editingContext.unstrip()
+			},
+			{
+				name: Stage.Final,
+				after: () => {}
 			}
 		];
+
+		for (let i = 0; i < stages.length; i++) {
+			const stage = stages[i];
+			const stageMutators = this._mutators[stage.name] || [];
+			if (!this._performStage( editingContext, stageMutators )) {
+				break;
+			}
+			stage.after();
+		}
+
+		editingContext.finalize();
 	}
 
 	/**

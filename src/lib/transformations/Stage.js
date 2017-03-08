@@ -1,7 +1,8 @@
 /**
- * Stages of
+ * Stages of transformation
  */
 export default {
-	Initial: 'initial'
-
+	Initial: 'initial',
+	AfterStrip: 'afterStrip',
+	Final: 'final'
 };
