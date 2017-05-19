@@ -42,7 +42,7 @@ export default class ReplacementRule {
 	}
 
 	get isEnabled() {
-		return this._flags & ReplacementRule.Disabled;
+		return !(this._flags & ReplacementRule.Disabled);
 	}
 
 	get regex() {
