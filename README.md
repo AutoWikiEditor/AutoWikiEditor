@@ -6,6 +6,14 @@ AutoWikiEditor is a semi-automated MediaWiki editing tool, a web-based heir of A
 
 # Development
 
+## Quickstart
+
+* Have a recent NodeJS installed.
+* Checkout this project
+* `npm install`
+* `npm start`
+
+
 ## Code style
 
 See the code for a live example of formatting used. Details:
