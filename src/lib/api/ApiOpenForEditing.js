@@ -52,9 +52,6 @@ export default class ApiOpenForEditing extends ApiQuery {
 				}
 
 				const pageTitle = new Title(page.ns, page.title);
-				if (!title.equals(pageTitle)) {
-					throw new ApiError();
-				}
 
 				if (page.revisions.length === 0) {
 					throw new ApiError('No revisions returned');
