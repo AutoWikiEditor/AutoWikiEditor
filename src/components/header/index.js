@@ -9,8 +9,7 @@ export default class Header extends Component {
 				<h1>AutoWikiEditor</h1>
 				<nav>
 					<Link href="/">Home</Link>
-					<Link href="/profile">Me</Link>
-					<Link href="/profile/john">John</Link>
+					<Link href="/edit/Cat">Edit</Link>
 				</nav>
 			</header>
 		);
