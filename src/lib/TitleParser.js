@@ -1,5 +1,4 @@
 import { Namespace, Site, Title } from './';
-import _ from 'underscore';
 
 export default class TitleParser {
 	_site;

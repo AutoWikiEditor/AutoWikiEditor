@@ -22,11 +22,12 @@ export default class Api {
 		return false;
 	}
 
-	request() {
+	request(extraParams = {}) {
 		let params = this.prepareRequest();
 		params.format = 'json';
 		params.formatversion = 2;
 		params.origin = '*';
+		params = _.extend(params, extraParams);
 
 		const requestMethod = this.needsPost()
 			? 'POST'
