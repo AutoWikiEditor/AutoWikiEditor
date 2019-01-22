@@ -70,7 +70,7 @@
     "url-loader": "^0.5.7",
     "v8-lazy-parse-webpack-plugin": "^0.3.0",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.0"
+    "webpack-dev-server": "^3.1.11"
   },
   "dependencies": {
     "preact": "^6.0.0",
@@ -78,7 +78,7 @@
     "preact-router": "^2.0.0",
     "promise-polyfill": "^6.0.2",
     "proptypes": "^0.14.3",
-    "serve": "^3.1.0",
+    "serve": "^7.0.0",
     "underscore": "~1.6.0"
   },
   "main": "webpack.config.babel.js",
